@@ -1,4 +1,4 @@
-# Home automation dashboard
+# Illuminator
 
 This project is a dashboard that can be used to smart lighting
 
