@@ -82,7 +82,6 @@ class Devices extends React.Component{
   }
 
   doStuff(row, e){
-    console.log('this', this);
     if (e.target.type == "checkbox"){
       this.props.data[row.id-1].active=!this.props.data[row.id-1].active;
     }
@@ -95,17 +94,8 @@ class Devices extends React.Component{
     
     this.props.data[row.id-1].selected=!this.props.data[row.id-1].selected;
     
-    if(this.props.data[row.id-1].selected === true && this.props.data[row.id-1].active === true){
+    if(this.props.data[row.id-1].selected === true){
       document.getElementById('room').innerHTML = this.props.data[row.id-1].name;
-
-      // document.getElementById('slider').setAttribute('value', this.props.data[row.id-1].brightness / Math.pow(10, 2));
-      // document.getElementById('slider').value = this.props.data[row.id-1].brightness / Math.pow(10, 2);
-
-      // console.log('vallue', document.getElementById('slider').value);
-      
-    }
-    else{
-      document.getElementById('room').innerHTML = "";
     }
 
     if(this.props.data[row.id-1].active=== false){
@@ -115,15 +105,15 @@ class Devices extends React.Component{
     this.setState({data:this.props.data,
       id:row.id-1
     });
-    console.log(document.getElementById('slider'));
   }
 
   doArc(e){
-    // console.log('arc',e);
-    // console.log(this);
-
     for (var k in this.props.data) {
-      console.log(this.props.data[k]); 
+      if(this.props.data[k].active === true && this.props.data[k].selected === true){
+        var activeLight = this.props.data[k];
+        activeLight.brightness = Math.round(e / Math.pow(10, -2));
+        this.setState({data:this.props.data});
+      }
     }
   }
 
