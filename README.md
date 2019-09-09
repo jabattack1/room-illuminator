@@ -40,3 +40,4 @@ Files are also prettified using `husky` and `prettier` as a pre-commit hook.
 # illuminator
 # illuminator
 # illuminator
+# room-illuminator
