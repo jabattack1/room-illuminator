@@ -111,7 +111,6 @@ class Devices extends React.Component {
 
     if (this.props.data[row.id - 1].active === false) {
       this.props.data[row.id - 1].selected = false;
-      // document.getElementById('slider').style.backgroundColor = "red";
       var slider = document.getElementById('slider');
       slider.children[0].children[2].style.stroke = '#7F7F7F';
       slider.children[0].children[3].style.fill = '#7F7F7F';
@@ -135,9 +134,23 @@ class Devices extends React.Component {
       ) {
         var activeLight = this.props.data[k];
         activeLight.brightness = Math.round(e / Math.pow(10, -2));
+
         this.setState({ data: this.props.data });
       }
+
+      // if(this.props.data[k].brightness === .00){
+      //   console.log('kick');
+      //   this.props.data[k].active = false;
+      //   this.setState({ data: this.props.data });
+      // }
     }
+  }
+
+  componentDidMount() {
+    var slider = document.getElementById('slider');
+    slider.children[0].children[2].style.stroke = '#7F7F7F';
+    slider.children[0].children[3].style.fill = '#7F7F7F';
+    slider.children[0].children[4].style.fill = '#7F7F7F';
   }
 }
 
