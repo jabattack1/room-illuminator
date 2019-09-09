@@ -54,9 +54,9 @@ const SAMPLE_DATA = [
     id: 3,
     name: 'Bedroom 02',
     active: false,
-    brightness: 70,
+    brightness: 30,
     selected: false,
-  },
+  }
 ];
 
 export const App = () => {

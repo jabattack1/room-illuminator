@@ -24,7 +24,9 @@ class Devices extends React.Component{
   constructor(props) {
     super(props);
     console.log(props.data);
-    this.state = {data: props.data};
+    this.state = {data: props.data,
+      id:'0'
+    };
   }
 
   render(){
@@ -69,10 +71,9 @@ class Devices extends React.Component{
             onRowClick={this.doStuff.bind(this)}
           />
         </Box>
-
         <ControlContainer flex='2' ml={3} bg='secondary.main'>
           <Room id='room'></Room>
-          <ArcSlider width='450px' mx='auto'>
+          <ArcSlider id='slider' width='450px' mx='auto' onValueChange={this.doArc.bind(this)} value={this.state.data[this.state.id].brightness / Math.pow(10, 2)}>
             <Txt color='white'>Brightness</Txt>
           </ArcSlider>
         </ControlContainer>
@@ -81,7 +82,7 @@ class Devices extends React.Component{
   }
 
   doStuff(row, e){
-
+    console.log('this', this);
     if (e.target.type == "checkbox"){
       this.props.data[row.id-1].active=!this.props.data[row.id-1].active;
     }
@@ -96,6 +97,12 @@ class Devices extends React.Component{
     
     if(this.props.data[row.id-1].selected === true && this.props.data[row.id-1].active === true){
       document.getElementById('room').innerHTML = this.props.data[row.id-1].name;
+
+      // document.getElementById('slider').setAttribute('value', this.props.data[row.id-1].brightness / Math.pow(10, 2));
+      // document.getElementById('slider').value = this.props.data[row.id-1].brightness / Math.pow(10, 2);
+
+      // console.log('vallue', document.getElementById('slider').value);
+      
     }
     else{
       document.getElementById('room').innerHTML = "";
@@ -105,9 +112,20 @@ class Devices extends React.Component{
       this.props.data[row.id-1].selected = false;
     }
 
-    this.setState({data:this.props.data});
+    this.setState({data:this.props.data,
+      id:row.id-1
+    });
+    console.log(document.getElementById('slider'));
   }
 
+  doArc(e){
+    // console.log('arc',e);
+    // console.log(this);
+
+    for (var k in this.props.data) {
+      console.log(this.props.data[k]); 
+    }
+  }
 
 
 };

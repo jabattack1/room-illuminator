@@ -17,7 +17,7 @@ export const Nav = () => {
     >
       <Txt>{day}</Txt>
       <Txt>{time}</Txt>
-      <Txt>Peter Hahn</Txt>
+      <Txt>My Place</Txt>
     </Flex>
   );
 };
